@@ -17,25 +17,6 @@ const mediaData = [
 	},
 ]
 */
-const mediaData = [
-	{
-		fileUrl: 'sounds/clap.wav',
-	},
-	{
-		fileUrl: 'sounds/hihat.wav',
-	},
-	{
-		fileUrl: 'sounds/kick.wav',
-	},
-	{
-		fileUrl: 'sounds/openhat.wav',
-	},
-	{
-		fileUrl: 'sounds/boom.wav',
-	},
-]
-
-
 
 let musicArray=[];
 let playNow;
@@ -47,9 +28,11 @@ let timer = document.getElementById("timer");
 let timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
 
 (function(){
-    for(let a = 0 ; a < mediaData.length ; a++)
+    //var files = fs.readdirSync('/sounds');
+
+    for(let a = 0 ; a < mediaEnglish.length ; a++)
     {        
-        var audioPlayer = new Audio(mediaData[a].fileUrl);
+        var audioPlayer = new Audio(mediaEnglish[a].fileUrl);
         audioPlayer.addEventListener("timeupdate", timeUpdateHandler, false);
         audioPlayer.addEventListener("ended", onendedHandler);
 
