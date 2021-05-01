@@ -11,7 +11,6 @@
 <body>
     <style>
         .controls {
-            margin-top: 20px;
             display: flex;
         }
 
@@ -19,7 +18,7 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-/**/
+
         .expend {
             padding: 0.5px;
             cursor: pointer;
@@ -49,10 +48,11 @@
         }
 
         #timer {
+            display: flex;
+            justify-content: space-between;
+            height: 20px;
             color: white;
-            line-height: 0;
             font-size: 12pt;
-            float: right;
             font-family: Arial, Sans-Serif;
         }
 
@@ -71,12 +71,27 @@
             border-radius: 2px;
         }
     </style>
-    <div style="background-color: #1E2125; width: 800px;">
+     <div>
+        <select name="sometext">
+            <option>Janpanese</option>
+            <option>English</option>
+        </select>
+    </div>
+    <div style="background-color: #1E2125; width: 500px;">
         <div id="slider">
             <div id="elapsed">
             </div>
-        </div>
-        <p id="timer">0:00</p>
+        </div> 
+
+        <div id='timer'>
+            <div id='music_name'>
+                0:00
+            </div>
+            <div id='music_time'>
+                0:00
+            </div>
+        </div>    
+
 
         <div class="controls">
             <div class="divclass">
@@ -89,8 +104,8 @@
                 </span>
             </div>
 
-            <div class="divclass">
-                <svg id="play" viewBox="0 0 25 25" xml:space="preserve">
+            <div id="Div_play" class="divclass">
+                <svg viewBox="3 2.5 20 20" xml:space="preserve">
                     <defs>
                         <rect x="-49.5" y="-132.9" width="446.4" height="366.4" />
                     </defs>
@@ -102,8 +117,8 @@
                 </svg>
             </div>
 
-            <div class="divclass">
-                <svg id="pause" viewBox="0 0 25 25" xml:space="preserve">
+            <div id="Div_pause" class="divclass" style="display: none;">
+                <svg viewBox="0 0 25 25" xml:space="preserve" >
                     <g>
                         <rect x="6" y="4.6" width="3.8" height="15.7" />
                         <rect x="14" y="4.6" width="3.9" height="15.7" />
@@ -123,12 +138,17 @@
             </div>
         </div>
     </div>
+
+
+
+
+
     <audio id="music" preload="auto" loop="false">
         <source src="https://dl.dropbox.com/s/oswkgcw749xc8xs/The-Noisy-Freaks.mp3?dl=1" type="audio/mp3">
         <source src="https://dl.dropbox.com/s/75jpngrgnavyu7f/The-Noisy-Freaks.ogg?dl=1" type="audio/ogg">
     </audio>
     <script src="playList.js"></script>
-    <script src="test2.js"></script>
+    <script src="test.js"></script>
 </body>
 
 </html>
