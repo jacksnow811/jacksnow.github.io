@@ -55,6 +55,7 @@
             font-size: 12pt;
             font-family: Arial, Sans-Serif;
         }
+
         /*
         #slider {
             width: 100%;
@@ -77,84 +78,130 @@
             background: #151518;
         }
 
+        /**/
+        #playList {
+            padding-left: 15px;
+            background-color: #1E2125;
+            color: white;
+            font-size: 12pt;
+            font-family: Arial, Sans-Serif;
+        }
+
+        #nav {
+            width: 60em;
+            /*max-width: 60em;*/
+            height: 14em;
+            line-height: 2em;
+            padding: 0;
+            margin: 0;
+            overflow-X: hidden;
+            overflow-y: scroll;
+            white-space: nowrap;
+            list-style-position: inside
+        }
+        .oltext{
+            color: red;
+            font-weight:bold;
+            /*background: black;*/
+        }
+        ol :hover{
+            transition:0.4s; 
+	        color: red;
+            font-weight:bold;
+	        background: black;
+        }
+
+        #playList > ::-webkit-scrollbar-track{
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+            background-color: #CCCCCC;
+        }
+        #playList > ::-webkit-scrollbar{
+	        width: 10px;
+	        background-color: #F5F5F5;
+        }
+        #playList > ::-webkit-scrollbar-thumb {
+	        background-color: #FFF;
+	        background-image: -webkit-linear-gradient(90deg,
+	                                          rgba(0, 0, 0, 1) 0%,
+											  rgba(0, 0, 0, 1) 25%,
+											  transparent 100%,
+											  rgba(0, 0, 0, 1) 75%,
+											  transparent)
+        }
     </style>
-     <div>
-        <select id="MusicList" style="margin-bottom: 5px;">
-            <!--<option value="Japanese">Japanese</option>-->
-            <!--<option value="English">English</option>-->
+    <div>
+        <select id="MusicTitle" style="margin-bottom: 5px;">
         </select>
     </div>
-    <div style="background-color: #1E2125; width: 500px;">
-        <!--
-        <div id="slider" >
-            <div id="elapsed">
+    <div style="display: flex;">
+        <div style="background-color: #1E2125; width: 500px; ">
+            <div>
+                <input type="range" min="0" max="100" step="0.1" value="0" class="slider" id="SliderRange"
+                    style="margin:10px 0px 10px 0px ; ">
             </div>
-            <input type="range" min="0" max="100" step="0.1" value="0" class="slider" id="SliderRange" style="margin:0px">
-        </div> 
-        -->
-        <div>
-            <input type="range" min="0" max="100" step="0.1" value="0" class="slider" id="SliderRange" 
-            style="margin:10px 0px 10px 0px ; ">
-        </div> 
 
-        <div id='timer' style="height: 40px;">
-            <div id='music_name' >                
+            <div id='timer' style="height: 40px;">
+                <div id='music_name'>
+                </div>
+                <div id='music_time' style="margin-right: 10px;">
+                    0:00
+                </div>
             </div>
-            <div id='music_time' style="margin-right: 10px;">
-                0:00
-            </div>
-        </div>    
 
+            <div class="controls">
+                <div class="divclass">
+                    <span class="expend">
+                        <svg id="backward" class="step-backward" viewBox="0 0 25 25" xml:space="preserve">
+                            <g>
+                                <polygon points="4.9,4.3 9,4.3 9,11.6 21.4,4.3 21.4,20.7 9,13.4 9,20.7 4.9,20.7" />
+                            </g>
+                        </svg>
+                    </span>
+                </div>
 
-        <div class="controls">
-            <div class="divclass">
-                <span class="expend">
-                    <svg id="backward" class="step-backward" viewBox="0 0 25 25" xml:space="preserve">
+                <div id="Div_play" class="divclass">
+                    <svg viewBox="3 2.5 20 20" xml:space="preserve">
+                        <defs>
+                            <rect x="-49.5" y="-132.9" width="446.4" height="366.4" />
+                        </defs>
                         <g>
-                            <polygon points="4.9,4.3 9,4.3 9,11.6 21.4,4.3 21.4,20.7 9,13.4 9,20.7 4.9,20.7" />
+                            <circle fill="none" cx="12.5" cy="12.5" r="10.8" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M8.7,6.9V18c0,0,0.2,1.4,1.8,0l8.1-4.8c0,0,1.2-1.1-1-2L9.8,6.5 C9.8,6.5,9.1,6,8.7,6.9z" />
                         </g>
                     </svg>
-                </span>
-            </div>
+                </div>
 
-            <div id="Div_play" class="divclass">
-                <svg viewBox="3 2.5 20 20" xml:space="preserve">
-                    <defs>
-                        <rect x="-49.5" y="-132.9" width="446.4" height="366.4" />
-                    </defs>
-                    <g>
-                        <circle fill="none" cx="12.5" cy="12.5" r="10.8" />
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M8.7,6.9V18c0,0,0.2,1.4,1.8,0l8.1-4.8c0,0,1.2-1.1-1-2L9.8,6.5 C9.8,6.5,9.1,6,8.7,6.9z" />
-                    </g>
-                </svg>
-            </div>
-
-            <div id="Div_pause" class="divclass" style="display: none;">
-                <svg viewBox="0 0 25 25" xml:space="preserve" >
-                    <g>
-                        <rect x="6" y="4.6" width="3.8" height="15.7" />
-                        <rect x="14" y="4.6" width="3.9" height="15.7" />
-                    </g>
-                </svg>
-            </div>
-
-            <div class="divclass">
-                <span class="expend">
-                    <svg id="foreward" class="step-foreward" viewBox="0 0 25 25" xml:space="preserve">
+                <div id="Div_pause" class="divclass" style="display: none;">
+                    <svg viewBox="0 0 25 25" xml:space="preserve">
                         <g>
-                            <polygon
-                                points="20.7,4.3 16.6,4.3 16.6,11.6 4.3,4.3 4.3,20.7 16.7,13.4 16.6,20.7 20.7,20.7" />
+                            <rect x="6" y="4.6" width="3.8" height="15.7" />
+                            <rect x="14" y="4.6" width="3.9" height="15.7" />
                         </g>
                     </svg>
-                </span>
+                </div>
+
+                <div class="divclass">
+                    <span class="expend">
+                        <svg id="foreward" class="step-foreward" viewBox="0 0 25 25" xml:space="preserve">
+                            <g>
+                                <polygon
+                                    points="20.7,4.3 16.6,4.3 16.6,11.6 4.3,4.3 4.3,20.7 16.7,13.4 16.6,20.7 20.7,20.7" />
+                            </g>
+                        </svg>
+                    </span>
+                </div>
             </div>
         </div>
+        <div id="playList" style="background-color: #1E2125;" class="scrollbar">
+            <p style="margin:5px;">播放清單</p>
+            <ul id="nav">
+                <ol id="oll">
+
+                </ol>
+            </ul>
+        </div>
     </div>
-
-
-
-
 
     <audio id="music" preload="auto" loop="false">
         <source src="https://dl.dropbox.com/s/oswkgcw749xc8xs/The-Noisy-Freaks.mp3?dl=1" type="audio/mp3">

@@ -19,6 +19,7 @@ class play_object
         this.MusicName = MusicName;
         this.fileUrl = fileUrl;
         this.InListName = InListName;
+        this.playconst=undefined;
     }
 }
 
@@ -38,7 +39,7 @@ function CreateObjectByList(mediaAry,ListName){
     }
     PlayTotalAry.push(new playListObject(ListName,play_objectAry));
 
-    var x = document.querySelector("#MusicList");
+    var x = document.querySelector("#MusicTitle");
     let option = document.createElement("option");
     option.text = ListName;
     x.add(option);
