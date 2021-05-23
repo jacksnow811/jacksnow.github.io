@@ -85,12 +85,12 @@ function ChangePlaymusic(play_object_old, play_object_new) {
     playNow = play_object_new;
     document.querySelector('#Div_play').style.display = 'none';
     document.querySelector('#Div_pause').style.display = '';
+    
     Array.from(document.querySelector('#oll').children).forEach((e)=>{
         e.classList.remove("oltext");
     })    
-    Array.from(document.querySelector('#oll').children).find(e=>
-        e.innerText==music_name.innerHTML
-    ).classList.add("oltext");
+    let index=musicArray.findIndex((e)=>e==play_object_new)
+    Array.from(document.querySelector('#oll').children)[index].classList.add("oltext");
 }
 
 
