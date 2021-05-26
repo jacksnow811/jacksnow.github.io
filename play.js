@@ -67,6 +67,7 @@ function ChangePlaymusic(play_object_old, play_object_new) {
         return;
     if(play_object_new.AudioPlayer ==null) {
         var audioPlayer = new Audio(play_object_new.fileUrl);
+        audioPlayer.volume=0.5;
         audioPlayer.addEventListener("timeupdate", function () {
             let Min = Math.floor(this.currentTime / 60)
             let sec = Math.floor(this.currentTime % 60)
