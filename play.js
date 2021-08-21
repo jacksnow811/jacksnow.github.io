@@ -24,7 +24,7 @@ let MusicTitle = document.querySelector("#MusicTitle");
     let pause = document.querySelector('#Div_pause').addEventListener('click', PauseHandler)
     let backward = document.querySelector('#backward').addEventListener('click', BackwardHandler)
     let foreward = document.querySelector('#foreward').addEventListener('click', ForwardHandler)
-
+    let repeat = document.querySelector('#repeat').addEventListener('click', RepeatHandler)
 })();
 function InitMediaList(InListName){
     if (playNow !== undefined) {
@@ -95,7 +95,12 @@ function ChangePlaymusic(play_object_old, play_object_new) {
 }
 
 
-function ForwardHandler() {
+function ForwardHandler(e) {
+    if(e.type==='ended' & document.querySelector("#repeat > g > path").classList.contains('fillAll')){
+        playNow.AudioPlayer.currentTime = 0;
+        playNow.AudioPlayer.play();
+        return;
+    }
     let index = musicArray.findIndex(e => e == playNow);
     if (index == musicArray.length - 1) {
         playNow.AudioPlayer.currentTime = 0;
@@ -128,4 +133,10 @@ function InitPlayList(musicArray) {
         li.appendChild(text);
         ol.appendChild(li);
     }
+}
+
+function RepeatHandler(){
+    document.querySelectorAll("#repeat > g > path").forEach((e)=>{
+        e.classList.toggle('fillAll');
+    })    
 }
