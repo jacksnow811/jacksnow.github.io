@@ -25,6 +25,7 @@ let MusicTitle = document.querySelector("#MusicTitle");
     let backward = document.querySelector('#backward').addEventListener('click', BackwardHandler)
     let foreward = document.querySelector('#foreward').addEventListener('click', ForwardHandler)
     let repeat = document.querySelector('#repeat').addEventListener('click', RepeatHandler)
+    let random = document.querySelector('#random').addEventListener('click', RandomHandler)
 })();
 function InitMediaList(InListName){
     if (playNow !== undefined) {
@@ -55,7 +56,7 @@ function PauseHandler() {
 
 function ChangePlaymusic(play_object_old, play_object_new) {
     if(play_object_old!==null)
-    {
+    {        
         if(play_object_old.AudioPlayer!==null){
             play_object_old.playconst.then(()=>{
                 play_object_old.AudioPlayer.pause();
@@ -139,4 +140,19 @@ function RepeatHandler(){
     document.querySelectorAll("#repeat > g > path").forEach((e)=>{
         e.classList.toggle('fillAll');
     })    
+}
+
+function RandomHandler(){
+    shuffleArray(musicArray);
+    InitPlayList(musicArray);
+    ChangePlaymusic(playNow,musicArray[0])
+}
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
 }
